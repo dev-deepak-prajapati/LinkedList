@@ -240,10 +240,10 @@ public class DoublyLinkedList {
 
     public void removeCycle() {
         // if LL not make cycle/loop ,return  
-        if(!detectCycle()){
+        if (!detectCycle()) {
             return;
         }
-        
+
         Node slow = head;
         Node fast = head;
 
@@ -282,7 +282,7 @@ public class DoublyLinkedList {
         dll.addFirst(17);
         dll.addFirst(18);
         dll.addFirst(19);
-
+        
         /**
          * this code make cycle/loop in Linked List
          */
@@ -294,7 +294,7 @@ public class DoublyLinkedList {
         dll.print();
         System.out.println(dll.detectCycle());
         dll.printReverse();
-
+        
     }
 
 }
