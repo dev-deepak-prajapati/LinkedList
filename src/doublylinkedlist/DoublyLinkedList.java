@@ -270,6 +270,42 @@ public class DoublyLinkedList {
         slow.prev = slowPrev;
     }
 
+    public int itrSearch(int key) {
+        if (head == null) {
+            return -1;
+        }
+
+        Node temp = head;
+        int i = 0;
+
+        while (temp != null) {
+            if (temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+
+        return -1;
+    }
+
+    public int recSearch(int key) {
+        if (head == null) {
+            return -1;
+        }
+        return helperRecSearch(head, key, 0);
+    }
+
+    private int helperRecSearch(Node temp, int key, int index) {
+        if (temp == null) {
+            return -1;
+        }
+        if (temp.data == key) {
+            return index;
+        }
+        return helperRecSearch(temp.next, key, index + 1);
+    }
+
     public static void main(String[] args) {
 
         DoublyLinkedList dll = new DoublyLinkedList();
@@ -283,18 +319,20 @@ public class DoublyLinkedList {
         dll.addFirst(18);
         dll.addFirst(19);
         
+        dll.print();
+        System.out.println(dll.recSearch(15));
+        
         /**
          * this code make cycle/loop in Linked List
          */
 //        tail.next = head.next.next;
 //        head.next.next.prev = tail;
 
-        System.out.println(dll.detectCycle());
-        dll.removeCycle();
-        dll.print();
-        System.out.println(dll.detectCycle());
-        dll.printReverse();
-        
+//        System.out.println(dll.detectCycle());
+//        dll.removeCycle();
+//        dll.print();
+//        System.out.println(dll.detectCycle());
+//        dll.printReverse();
     }
 
 }
