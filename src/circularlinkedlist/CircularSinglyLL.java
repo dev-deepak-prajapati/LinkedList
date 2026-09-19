@@ -165,16 +165,69 @@ public class CircularSinglyLL {
         return val;
     }
 
+    public void reverse() {
+        if (head == null) {
+            System.out.println("LL is empty.");
+            return;
+        }
+
+        Node prev = null;
+        Node curr = head;
+        Node next;
+        tail = head;
+
+        do {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        } while (curr != head);
+
+        head = prev;
+        tail.next = head;
+    }
+
+    public int itrSearch(int key) {
+        if (head == null) {
+            return -1;
+        }
+        Node temp = head;
+        int i = 0;
+        do {
+            if (temp.data == key) {
+                return i;
+            }
+            i++;
+            temp = temp.next;
+        } while (temp != head);
+        return -1;
+    }
+
+    public int recSearch(int key) {
+        if (head == null) {
+            return -1;
+        }
+        return helperRecSearch(head, key, 0);
+    }
+
+    private int helperRecSearch(Node temp, int key, int index) {
+        if (temp.data == key) {
+            return index;
+        }
+        if (temp.next == head) {
+            return -1;
+        }
+        return helperRecSearch(temp.next, key, index + 1);
+    }
+
     public static void main(String[] args) {
         CircularSinglyLL cll = new CircularSinglyLL();
         cll.addFirst(1);
         cll.addFirst(4);
         cll.addLast(5);
         cll.addLast(7);
-        cll.addLast(8);
-        cll.add(4, 5);
         cll.print();
-        System.out.println(cll.remove(2));
+        System.out.println(cll.recSearch(7));
         cll.print();
 
     }
